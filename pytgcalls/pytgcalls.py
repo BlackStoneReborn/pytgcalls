@@ -124,9 +124,12 @@ class PyTgCalls(Methods):
                                 for event in self._on_event_update[
                                     'KICK_HANDLER'
                                 ]:
-                                    await event['callable'](
-                                        chat_id,
-                                    )
+                                    try:
+                                        await event['callable'](
+                                            chat_id,
+                                        )
+                                    except KeyError:
+                                        pass
                                 # noinspection PyBroadException
                                 try:
                                     self.leave_group_call(
@@ -151,9 +154,12 @@ class PyTgCalls(Methods):
                             for event in self._on_event_update[
                                 'CLOSED_HANDLER'
                             ]:
-                                await event['callable'](
-                                    chat_id,
-                                )
+                                try:
+                                    await event['callable'](
+                                        chat_id,
+                                    )
+                                except TypeError:
+                                    pass
                             # noinspection PyBroadException
                             try:
                                 self.leave_group_call(
@@ -178,9 +184,12 @@ class PyTgCalls(Methods):
                                 for event in self._on_event_update[
                                     'GROUP_CALL_HANDLER'
                                 ]:
-                                    await event['callable'](
-                                        client, update.message,
-                                    )
+                                    try:
+                                        await event['callable'](
+                                            client, update.message,
+                                        )
+                                    except TypeError:
+                                        pass
                         except Exception:
                             pass
                 self._app.start()
