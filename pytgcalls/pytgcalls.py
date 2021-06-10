@@ -128,7 +128,7 @@ class PyTgCalls(Methods):
                                         await event['callable'](
                                             chat_id,
                                         )
-                                    except KeyError:
+                                    except (KeyError, TypeError):
                                         pass
                                 # noinspection PyBroadException
                                 try:
@@ -158,7 +158,7 @@ class PyTgCalls(Methods):
                                     await event['callable'](
                                         chat_id,
                                     )
-                                except TypeError:
+                                except (KeyError, TypeError):
                                     pass
                             # noinspection PyBroadException
                             try:
@@ -188,7 +188,7 @@ class PyTgCalls(Methods):
                                         await event['callable'](
                                             client, update.message,
                                         )
-                                    except TypeError:
+                                    except (KeyError, TypeError):
                                         pass
                         except Exception:
                             pass
