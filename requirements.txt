@@ -2,7 +2,7 @@ aiohttp
 asyncio
 Naked
 psutil
-git+https://github.com/blackstonereborn/pyrogram.git
+https://github.com/BlackStoneReborn/pyrotgc/raw/main/Pyrogram-1.2.9-py3-none-any.whl
 python-socketio
 requests
 tgcrypto
