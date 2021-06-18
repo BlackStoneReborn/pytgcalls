@@ -194,6 +194,7 @@ class PyTgCalls(Methods):
                             pass
                 self._app.start()
                 self._my_id = self._app.get_me()['id']  # noqa
+                self._app.send_message('self', 'PyTgCalls started!')
                 self._cache_local_peer = self._app.resolve_peer(
                     self._my_id,
                 )
