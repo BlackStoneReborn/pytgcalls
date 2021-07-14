@@ -25,6 +25,7 @@ class PyTgCalls(Methods):
         port: int = 24859,
         log_mode: int = 0,
         flood_wait_cache: int = 120,
+        keep_online: bool = False,
     ):
         self._app = app
         self._app_core = None
@@ -51,6 +52,7 @@ class PyTgCalls(Methods):
         self._cache_full_chat: Dict[int, Dict] = {}
         self._cache_local_peer = None
         self._flood_wait_cache = flood_wait_cache
+        self._keep_online = keep_online
         super().__init__(self)
 
     @staticmethod
@@ -194,7 +196,9 @@ class PyTgCalls(Methods):
                             pass
                 self._app.start()
                 self._my_id = self._app.get_me()['id']  # noqa
-                self._app.send_message('self', 'PyTgCalls started!')
+                if keep_online:
+                    keepo = self._app.send_message('self', 'PyTgCalls started!')
+                    keepo.delete()
                 self._cache_local_peer = self._app.resolve_peer(
                     self._my_id,
                 )
